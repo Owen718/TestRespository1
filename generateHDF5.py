@@ -19,19 +19,21 @@ def process(f):
 prefix = '/HOME/scz0088/run/datasets/imagenet-mini/train/'
 l = list(map(lambda x : os.path.join(prefix, x), os.listdir(prefix)))
 
-print(l)
+l_train = []
 
+for subdir in l:
+    for img_name in os.listdir(subdir):
+        l_train.append(os.path.join(subdir,img_name))
 
-
-# i = 0
-# imagenet = np.zeros((len(l), image_size, image_size, 3), dtype='uint8')
-# pool = multiprocessing.Pool(num_cpus)
-# while i < len(l):
-#     current_batch = l[i:i + batch_size]    
-#     current_res = np.array(pool.map(process, current_batch))
-#     imagenet[i:i + batch_size] = current_res    
-#     i += batch_size
-#     print(i, 'images')
+i = 0
+imagenet = np.zeros((len(l), image_size, image_size, 3), dtype='uint8')
+pool = multiprocessing.Pool(num_cpus)
+while i < len(l):
+    current_batch = l_train[i:i + batch_size]    
+    current_res = np.array(pool.map(process, current_batch))
+    imagenet[i:i + batch_size] = current_res    
+    i += batch_size
+    print(i, 'images')
     
 # prefix = '/HOME/scz0088/run/datasets/imagenet-mini/val/'
 # l_val = list(map(lambda x : os.path.join(prefix, x), os.listdir(prefix)))
