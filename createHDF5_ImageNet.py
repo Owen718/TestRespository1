@@ -7,8 +7,8 @@ def Readimage(path):
     return np.array(Image.open(path).convert('RGB').resize((128,128)))
 
 
-dataset_name = 'ImageNetmini_train'
-dataset_path='/HOME/scz0088/run/datasets/imagenet-mini/train'
+dataset_name = 'ImageNetmini_val'
+dataset_path=r'/HOME/scz0088/run/datasets/imagenet-mini/val'
 
 
 f = hf.File( dataset_name+'.h5', 'w')
