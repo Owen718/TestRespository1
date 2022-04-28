@@ -7,11 +7,11 @@ def Readimage(path):
     return np.array(Image.open(path).convert('RGB').resize((128,128)))
 
 
-dataset_name = 'train'
+dataset_name = 'ImageNetmini_train'
 dataset_path='/HOME/scz0088/run/datasets/imagenet-mini/train'
 
 
-f = hf.File(dataset_name+'.h5', 'w')
+f = hf.File( os.path.join(r'/data/home/scv6681/run/data',dataset_name+'.h5', 'w'))
 
 sub_dir = os.listdir(dataset_path)
 
